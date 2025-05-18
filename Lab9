@@ -1,0 +1,20 @@
+import math
+
+def g(x):
+    return math.sqrt(math.log(x))
+
+def fixed_point_iteration(g, x0, tol=1e-6, max_iter=100):
+    for i in range(max_iter):
+        x1 = g(x0)
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    print("Maksimal iterasiya sayı aşdı.")
+    return None
+
+# Başlanğıc təxmin
+x0 = 0.5
+
+kök = fixed_point_iteration(g, x0)
+if kök:
+    print(f"Təxmini kök: {kök}")
