@@ -1,0 +1,29 @@
+import math
+
+def f(x):
+    return x**2 - math.log(x)
+
+def f_prime(x):
+    return 2*x - 1/x
+
+def newton_raphson(x0, tol=1e-6, max_iter=100):
+    for i in range(max_iter):
+        fx = f(x0)
+        fpx = f_prime(x0)
+        if fpx == 0:
+            print("Törəmə sıfırdır. Hesablama dayandırıldı.")
+            return None
+        x1 = x0 - fx / fpx
+        if abs(x1 - x0) < tol:
+            print(f"{i+1} iterasiyadan sonra təxmini kök: {x1}")
+            return x1
+        x0 = x1
+    print("Maksimal iterasiya sayı aşdı.")
+    return None
+
+# Başlanğıc təxmin
+x0 = 0.5
+
+kök = newton_raphson(x0)
+if kök:
+    print(f"Təxmini kök: {kök}")
